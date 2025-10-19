@@ -1,363 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Through My Lense — 攝影作品集</title>
-    <meta name="description" content="賽車攝影作品集：高質感、乾淨的Pinterest風格相簿與每張照片背後的故事。" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duchi Photography Portfolio</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      color: #fff;
+      text-align: center;
+    }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    header {
+      background-color: #000;
+      padding: 2rem;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
 
-    <style>
-        :root{
-            /* 莫蘭迪灰白系：柔和、低飽和度的灰藍 */
-            --bg:#eef0f3; 
-            --card-bg:#ffffff; 
-            --text:#333333; 
-            --muted:#767676; 
-            --hover-shadow: rgba(0, 0, 0, 0.15); 
-            --max-width:1200px;
-            --radius:12px; 
-            color-scheme: light;
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-        }
-        *{box-sizing:border-box}
-        html,body{height:100%}
-        body{
-            margin:0;padding:24px; 
-            background:var(--bg); 
-            color:var(--text);
-            display:flex;justify-content:center;align-items:flex-start;
-        }
-        .site{max-width:var(--max-width); width:100%;}
-        
-        a { color: var(--text); text-decoration: none; }
-        a:hover { color: var(--muted); }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
 
-        header{
-            display:flex;align-items:center;justify-content:space-between;
-            margin-bottom:24px;
-            padding-bottom:15px; 
-            border-bottom: none;
-            position: sticky; 
-            top: 0;
-            background: var(--bg); 
-            z-index: 100; 
-        }
-        .brand{display:flex;gap:12px;align-items:center} 
-        .logo{
-            width:40px;height:40px;border-radius:50%; 
-            background:var(--text);
-            display:flex;align-items:center;justify-content:center;
-            font-weight:700;font-size:14px;
-            color:var(--bg);
-            box-shadow:none;
-        }
-        h1{margin:0;font-size:18px;font-weight:600}
-        p.lead{margin:0;color:var(--muted);font-size:12px} 
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        .meta{display:flex;gap:14px;align-items:center}
-        .contact{font-size:12px;color:var(--muted);text-decoration:none}
-        .contact:hover{color:var(--text);}
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
 
-        /* Pinterest-like masonry using column-count */
-        .masonry{
-            column-count:4; 
-            column-gap:16px; 
-            padding-top: 10px; 
-        }
-        @media (max-width:1200px){.masonry{column-count:3}} 
-        @media (max-width:800px){.masonry{column-count:2}}
-        @media (max-width:500px){.masonry{column-count:1}}
-
-        .card{
-            background:var(--card-bg);
-            border:none; 
-            border-radius:var(--radius);
-            margin:0 0 16px; 
-            display:inline-block; width:100%; overflow:hidden; break-inside:avoid;
-            box-shadow:0 1px 4px rgba(0,0,0,0.08); 
-        }
-        
-        /* 圖片樣式：確保圖片能以自然比例顯示 */
-        .photo{
-            display:block;
-            width:100%;
-            height:auto; 
-            max-width:100%;
-        }
-
-        .caption{padding:12px; 
-            color:var(--muted); 
-            font-size:13px; 
-            line-height:1.4;
-        }
-        .title{
-            margin:0 0 4px; 
-            font-weight:600;
-            font-size:14px; 
-            color:var(--text); 
-        }
-        .story{margin:0;color:var(--muted);font-size:12px;line-height:1.45} 
-
-        footer{
-            margin-top:40px; 
-            padding:20px 0; 
-            background:transparent; 
-            border-top:1px solid rgba(0,0,0,0.08); 
-            border-radius:0; 
-            color:var(--muted);font-size:12px;
-            display:flex;justify-content:space-between;align-items:center;
-        }
-
-        /* Hover effect (Pinterest style) */
-        .card:hover{
-            transform:translateY(-2px); 
-            transition:transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms cubic-bezier(.2,.8,.2,1);
-            box-shadow:0 6px 16px var(--hover-shadow); 
-        }
-
-        /* Utility */
-        .small{font-size:11px;color:var(--muted)} 
-    </style>
+    footer {
+      padding: 2rem;
+      background-color: #000;
+      color: #888;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="site">
-        <header>
-            <div class="brand">
-                <div class="logo">TML</div>
-                <div>
-                    <h1>Through My Lense</h1>
-                    <p class="lead">賽車攝影｜乾淨的影像與短篇故事 — by DuciChen</p>
-                </div>
-            </div>
+  <header>Duchi Photography Portfolio</header>
 
-            <div class="meta">
-                <a class="contact small" href="mailto:ducichen970516@gmail.com">ducichen970516@gmail.com</a>
-            </div>
-        </header>
+  <section class="gallery">
+    <img src="images/P1010368%20(1).JPG" alt="Photo 1">
+    <!-- 如果還有其他照片，也照這個方式加 -->
+    <!-- <img src="images/photo2.jpg" alt="Photo 2"> -->
+  </section>
 
-        <main class="masonry" aria-label="攝影作品集">
-
-            
-<article class="card">
-    <img class="photo" src="/images/photo1.jpg" alt="賽車在賽道轉彎，低角度近拍" loading="lazy">
-    <div class="caption">
-        <h3 class="title">黃金秒差</h3>
-        <p class="story">那天黃昏，光線像磨過的銅片一樣。車手在最後一彎敢於踩下油門，衝出一道煙霧與人生的距離。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo2.jpg" alt="車尾噴火，夜賽的冷暖色調" loading="lazy">
-    <div class="caption">
-        <h3 class="title">火山現場</h3>
-        <p class="story">夜賽的攝影像是在畫布上灑上熱度，熱排氣在冷夜裡像短促的詩句。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo3.jpg" alt="觀眾席與車輛的對比構圖" loading="lazy">
-    <div class="caption">
-        <h3 class="title">第十圈的沉默</h3>
-        <p class="story">觀眾屏息，鏡頭捕捉那一瞬間人群與機械的同調。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo4.jpg" alt="替換成圖片4的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題四</h3>
-        <p class="story">這裡寫下關於圖片四的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo5.jpg" alt="替換成圖片5的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題五</h3>
-        <p class="story">這裡寫下關於圖片五的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo6.jpg" alt="替換成圖片6的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題六</h3>
-        <p class="story">這裡寫下關於圖片六的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo7.jpg" alt="替換成圖片7的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題七</h3>
-        <p class="story">這裡寫下關於圖片七的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo8.jpg" alt="替換成圖片8的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題八</h3>
-        <p class="story">這裡寫下關於圖片八的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo9.jpg" alt="替換成圖片9的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題九</h3>
-        <p class="story">這裡寫下關於圖片九的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo10.jpg" alt="替換成圖片10的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題十</h3>
-        <p class="story">這裡寫下關於圖片十的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo11.jpg" alt="替換成圖片11的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題十一</h3>
-        <p class="story">這裡寫下關於圖片十一的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo12.jpg" alt="替換成圖片12的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題十二</h3>
-        <p class="story">這裡寫下關於圖片十二的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo13.jpg" alt="替換成圖片13的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題十三</h3>
-        <p class="story">這裡寫下關於圖片十三的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo14.jpg" alt="替換成圖片14的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題十四</h3>
-        <p class="story">這裡寫下關於圖片十四的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo15.jpg" alt="替換成圖片15的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題十五</h3>
-        <p class="story">這裡寫下關於圖片十五的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo16.jpg" alt="替換成圖片16的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題十六</h3>
-        <p class="story">這裡寫下關於圖片十六的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo17.jpg" alt="替換成圖片17的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題十七</h3>
-        <p class="story">這裡寫下關於圖片十七的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo18.jpg" alt="替換成圖片18的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題十八</h3>
-        <p class="story">這裡寫下關於圖片十八的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo19.jpg" alt="替換成圖片19的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題十九當</h3>
-        <p class="story">這裡寫下關於圖片十九的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo20.jpg" alt="替換成圖片20的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題二十</h3>
-        <p class="story">這裡寫下關於圖片二十的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo21.jpg" alt="替換成圖片21的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題二十一</h3>
-        <p class="story">這裡寫下關於圖片二十一的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo22.jpg" alt="替換成圖片22的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題二十二</h3>
-        <p class="story">這裡寫下關於圖片二十二的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo23.jpg" alt="替換成圖片23的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題二十三</h3>
-        <p class="story">這裡寫下關於圖片二十三的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo24.jpg" alt="替換成圖片24的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題二十四</h3>
-        <p class="story">這裡寫下關於圖片二十四的故事或簡介。</p>
-    </div>
-</article>
-
-<article class="card">
-    <img class="photo" src="/images/photo25.jpg" alt="替換成圖片25的描述" loading="lazy">
-    <div class="caption">
-        <h3 class="title">標題二十五</h3>
-        <p class="story">這裡寫下關於圖片二十五的故事或簡介。</p>
-    </div>
-</article>
-
-
-        </main>
-
-        <footer>
-            <div>
-                <div style="font-weight:600; color:var(--text);">聯絡</div>
-                <div class="small">Email: <a class="contact" href="mailto:ducichen970516@gmail.com">ducichen970516@gmail.com</a></div>
-            </div>
-            <div class="small">© <span id="year"></span> DuciChen — Through My Lense</div>
-        </footer>
-    </div>
-
-    <script>
-        // 自動年份
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+  <footer>
+    © 2025 Duchi — All rights reserved.
+  </footer>
 </body>
 </html>
