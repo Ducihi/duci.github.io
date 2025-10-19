@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Under the Lights — 攝影作品集</title>
-    <meta name="description" content="pov:Duci" />
+    <title>賽道映像 — 攝影作品集</title>
+    <meta name="description" content="賽車攝影作品集：高質感、乾淨的Pinterest風格相簿與每張照片背後的故事。" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,21 +12,22 @@
 
     <style>
         :root{
-            --bg:#f0f2f5; /* 更柔和的淺灰色背景，類似Pinterest */
-            --card-bg:#ffffff; /* 卡片背景為白色 */
-            --text:#333333; /* 主文字顏色 (深灰) */
-            --muted:#767676; /* 輔助文字顏色 (中灰) */
-            --hover-shadow: rgba(0, 0, 0, 0.15); /* 懸停時的陰影顏色 */
+            /* 莫蘭迪灰白系：柔和、低飽和度的灰藍 */
+            --bg:#eef0f3; 
+            --card-bg:#ffffff; 
+            --text:#333333; 
+            --muted:#767676; 
+            --hover-shadow: rgba(0, 0, 0, 0.15); 
             --max-width:1200px;
-            --radius:12px; /* 柔和的圓角 */
+            --radius:12px; 
             color-scheme: light;
             font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
         }
         *{box-sizing:border-box}
         html,body{height:100%}
         body{
-            margin:0;padding:24px; /* 稍微縮小內邊距 */
-            background:var(--bg);
+            margin:0;padding:24px; 
+            background:var(--bg); /* 使用莫蘭迪灰白背景 */
             color:var(--text);
             display:flex;justify-content:center;align-items:flex-start;
         }
@@ -42,7 +43,7 @@
             border-bottom: none;
             position: sticky; 
             top: 0;
-            background: var(--bg); 
+            background: var(--bg); /* 確保懸浮時背景色與 body 一致 */
             z-index: 100; 
         }
         .brand{display:flex;gap:12px;align-items:center} 
@@ -137,30 +138,30 @@
 
             
 <article class="card">
-                <img class="photo" src="/images/photo1.jpg" alt="賽車在賽道轉彎，低角度近拍" loading="lazy">
-                <div class="caption">
-                    <h3 class="title">黃金秒差</h3>
-                    <p class="story">那天黃昏，光線像磨過的銅片一樣。車手在最後一彎敢於踩下油門，衝出一道煙霧與人生的距離。</p>
-                </div>
-            </article>
+    <img class="photo" src="images/photo1.jpg" alt="賽車在賽道轉彎，低角度近拍" loading="lazy">
+    <div class="caption">
+        <h3 class="title">黃金秒差</h3>
+        <p class="story">那天黃昏，光線像磨過的銅片一樣。車手在最後一彎敢於踩下油門，衝出一道煙霧與人生的距離。</p>
+    </div>
+</article>
 
-            <article class="card">
-                <img class="photo" src="/images/photo2.jpg" alt="車尾噴火，夜賽的冷暖色調" loading="lazy">
-                <div class="caption">
-                    <h3 class="title">現場</h3>
-                    <p class="story">夜賽的攝影像是在畫布上灑上熱度，熱排氣在冷夜裡像短促的詩句。</p>
-                </div>
-            </article>
+<article class="card">
+    <img class="photo" src="images/photo2.jpg" alt="車尾噴火，夜賽的冷暖色調" loading="lazy">
+    <div class="caption">
+        <h3 class="title">火山現場</h3>
+        <p class="story">夜賽的攝影像是在畫布上灑上熱度，熱排氣在冷夜裡像短促的詩句。</p>
+    </div>
+</article>
 
-            <article class="card">
-                <img class="photo" src="/images/photo3.jpg" alt="觀眾席與車輛的對比構圖" loading="lazy">
-                <div class="caption">
-                    <h3 class="title">第十圈的沉默</h3>
-                    <p class="story">觀眾屏息，鏡頭捕捉那一瞬間人群與機械的同調。</p>
-                </div>
-            </article>
+<article class="card">
+    <img class="photo" src="images/photo3.jpg" alt="觀眾席與車輛的對比構圖" loading="lazy">
+    <div class="caption">
+        <h3 class="title">第十圈的沉默</h3>
+        <p class="story">觀眾屏息，鏡頭捕捉那一瞬間人群與機械的同調。</p>
+    </div>
+</article>
 
-            </main>
+</main>
 
         <footer>
             <div>
