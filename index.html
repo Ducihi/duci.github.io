@@ -1,137 +1,180 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>賽道映像 — 攝影作品集</title>
-  <meta name="description" content="賽車攝影作品集：高質感、乾淨的Pinterest風格相簿與每張照片背後的故事。" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>賽道映像 — 攝影作品集</title>
+    <meta name="description" content="賽車攝影作品集：高質感、乾淨的Pinterest風格相簿與每張照片背後的故事。" />
 
-  <!-- Google Font (可保留或替換) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --bg:#0f1113; /* 深色底，質感 */
-      --card:#0f1416;
-      --muted:#9aa4ad;
-      --accent:#e6eef8;
-      --max-width:1200px;
-      --radius:14px;
-      color-scheme: dark;
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;padding:32px; background:linear-gradient(180deg,var(--bg),#060607 120%); color:var(--accent);
-      display:flex;justify-content:center;align-items:flex-start;
-    }
-    .site{max-width:var(--max-width); width:100%;}
+    <style>
+        :root{
+            --bg:#f0f2f5; /* 更柔和的淺灰色背景，類似Pinterest */
+            --card-bg:#ffffff; /* 卡片背景為白色 */
+            --text:#333333; /* 主文字顏色 (深灰) */
+            --muted:#767676; /* 輔助文字顏色 (中灰) */
+            --hover-shadow: rgba(0, 0, 0, 0.15); /* 懸停時的陰影顏色 */
+            --max-width:1200px;
+            --radius:12px; /* 柔和的圓角 */
+            color-scheme: light;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0;padding:24px; /* 稍微縮小內邊距 */
+            background:var(--bg);
+            color:var(--text);
+            display:flex;justify-content:center;align-items:flex-start;
+        }
+        .site{max-width:var(--max-width); width:100%;}
+        
+        a { color: var(--text); text-decoration: none; }
+        a:hover { color: var(--muted); }
 
-    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-    .brand{display:flex;gap:14px;align-items:center}
-    .logo{
-      width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#151518,#1e2326);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;color:var(--accent);box-shadow:0 6px 24px rgba(0,0,0,0.6)
-    }
-    h1{margin:0;font-size:20px;font-weight:600}
-    p.lead{margin:0;color:var(--muted);font-size:13px}
+        header{
+            display:flex;align-items:center;justify-content:space-between;
+            margin-bottom:24px;
+            padding-bottom:15px; 
+            border-bottom: none;
+            position: sticky; 
+            top: 0;
+            background: var(--bg); 
+            z-index: 100; 
+        }
+        .brand{display:flex;gap:12px;align-items:center} 
+        .logo{
+            width:40px;height:40px;border-radius:50%; 
+            background:var(--text);
+            display:flex;align-items:center;justify-content:center;
+            font-weight:700;font-size:14px;
+            color:var(--bg);
+            box-shadow:none;
+        }
+        h1{margin:0;font-size:18px;font-weight:600}
+        p.lead{margin:0;color:var(--muted);font-size:12px} 
 
-    /* Controls row (keeps page minimal but shows contact) */
-    .meta{display:flex;gap:16px;align-items:center}
-    .contact{font-size:13px;color:var(--muted);text-decoration:none}
+        .meta{display:flex;gap:14px;align-items:center}
+        .contact{font-size:12px;color:var(--muted);text-decoration:none}
+        .contact:hover{color:var(--text);}
 
-    /* Pinterest-like masonry using column-count */
-    .masonry{
-      column-count:3; column-gap:18px;
-    }
-    @media (max-width:1000px){.masonry{column-count:2}}
-    @media (max-width:640px){.masonry{column-count:1}}
+        /* Pinterest-like masonry using column-count */
+        .masonry{
+            column-count:4; 
+            column-gap:16px; 
+            padding-top: 10px; 
+        }
+        @media (max-width:1200px){.masonry{column-count:3}} 
+        @media (max-width:800px){.masonry{column-count:2}}
+        @media (max-width:500px){.masonry{column-count:1}}
 
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:var(--radius); margin:0 0 18px; display:inline-block; width:100%; overflow:hidden; break-inside:avoid; box-shadow:0 10px 30px rgba(0,0,0,0.6);
-    }
-    .photo{display:block;width:100%;height:auto;max-width:100%;}
-    .caption{padding:14px 16px}
-    .title{margin:0;font-weight:600;font-size:15px}
-    .story{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.45}
+        .card{
+            background:var(--card-bg);
+            border:none; 
+            border-radius:var(--radius);
+            margin:0 0 16px; 
+            display:inline-block; width:100%; overflow:hidden; break-inside:avoid;
+            box-shadow:0 1px 4px rgba(0,0,0,0.08); 
+        }
+        .photo{display:block;width:100%;height:auto;max-width:100%;}
+        .caption{padding:12px; 
+            color:var(--muted); 
+            font-size:13px; 
+            line-height:1.4;
+        }
+        .title{
+            margin:0 0 4px; 
+            font-weight:600;
+            font-size:14px; 
+            color:var(--text); 
+        }
+        .story{margin:0;color:var(--muted);font-size:12px;line-height:1.45} 
 
-    footer{margin-top:28px;padding:20px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.04));color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center}
+        footer{
+            margin-top:40px; 
+            padding:20px 0; 
+            background:transparent; 
+            border-top:1px solid rgba(0,0,0,0.08); 
+            border-radius:0; 
+            color:var(--muted);font-size:12px;
+            display:flex;justify-content:space-between;align-items:center;
+        }
 
-    /* Nice hover effect but no JS required */
-    .card:hover{transform:translateY(-6px);transition:transform 220ms cubic-bezier(.2,.8,.2,1)}
+        /* Hover effect (Pinterest style) */
+        .card:hover{
+            transform:translateY(-2px); 
+            transition:transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms cubic-bezier(.2,.8,.2,1);
+            box-shadow:0 6px 16px var(--hover-shadow); 
+        }
 
-    /* Utility */
-    .small{font-size:12px;color:var(--muted)}
-  </style>
+        /* Utility */
+        .small{font-size:11px;color:var(--muted)} 
+    </style>
 </head>
 
 <body>
-  <div class="site">
-    <header>
-      <div class="brand">
-        <div class="logo">RC</div>
-        <div>
-          <h1>賽道映像</h1>
-          <p class="lead">賽車攝影｜乾淨的影像與短篇故事 — by Your Name</p>
-        </div>
-      </div>
+    <div class="site">
+        <header>
+            <div class="brand">
+                <div class="logo">RC</div>
+                <div>
+                    <h1>賽道映像</h1>
+                    <p class="lead">賽車攝影｜乾淨的影像與短篇故事 — by DuciChen</p>
+                </div>
+            </div>
 
-      <div class="meta">
-        <!-- Replace email / socials below -->
-        <a class="contact small" href="mailto:youremail@example.com">youremail@example.com</a>
-        <span class="small">·</span>
-        <a class="contact small" href="https://instagram.com/yourhandle" target="_blank" rel="noopener">@yourhandle</a>
-      </div>
-    </header>
+            <div class="meta">
+                <a class="contact small" href="mailto:youremail@example.com">youremail@example.com</a>
+                <span class="small">·</span>
+                <a class="contact small" href="https://instagram.com/yourhandle" target="_blank" rel="noopener">@yourhandle</a>
+            </div>
+        </header>
 
-    <!-- Gallery (replace images in /images/) -->
-    <main class="masonry" aria-label="攝影作品集">
+        <main class="masonry" aria-label="攝影作品集">
 
-      <!-- Card example: copy and paste block to add more photos -->
-      <article class="card">
-        <img class="photo" src="/images/photo1.jpg" alt="賽車在賽道轉彎，低角度近拍" loading="lazy">
-        <div class="caption">
-          <h3 class="title">黃金秒差</h3>
-          <p class="story">那天黃昏，光線像磨過的銅片一樣。車手在最後一彎敢於踩下油門，衝出一道煙霧與人生的距離。</p>
-        </div>
-      </article>
+            
+<article class="card">
+                <img class="photo" src="/images/photo1.jpg" alt="賽車在賽道轉彎，低角度近拍" loading="lazy">
+                <div class="caption">
+                    <h3 class="title">黃金秒差</h3>
+                    <p class="story">那天黃昏，光線像磨過的銅片一樣。車手在最後一彎敢於踩下油門，衝出一道煙霧與人生的距離。</p>
+                </div>
+            </article>
 
-      <article class="card">
-        <img class="photo" src="/images/photo2.jpg" alt="車尾噴火，夜賽的冷暖色調" loading="lazy">
-        <div class="caption">
-          <h3 class="title">火山現場</h3>
-          <p class="story">夜賽的攝影像是在畫布上灑上熱度，熱排氣在冷夜裡像短促的詩句。</p>
-        </div>
-      </article>
+            <article class="card">
+                <img class="photo" src="/images/photo2.jpg" alt="車尾噴火，夜賽的冷暖色調" loading="lazy">
+                <div class="caption">
+                    <h3 class="title">火山現場</h3>
+                    <p class="story">夜賽的攝影像是在畫布上灑上熱度，熱排氣在冷夜裡像短促的詩句。</p>
+                </div>
+            </article>
 
-      <article class="card">
-        <img class="photo" src="/images/photo3.jpg" alt="觀眾席與車輛的對比構圖" loading="lazy">
-        <div class="caption">
-          <h3 class="title">第十圈的沉默</h3>
-          <p class="story">觀眾屏息，鏡頭捕捉那一瞬間人群與機械的同調。</p>
-        </div>
-      </article>
+            <article class="card">
+                <img class="photo" src="/images/photo3.jpg" alt="觀眾席與車輛的對比構圖" loading="lazy">
+                <div class="caption">
+                    <h3 class="title">第十圈的沉默</h3>
+                    <p class="story">觀眾屏息，鏡頭捕捉那一瞬間人群與機械的同調。</p>
+                </div>
+            </article>
 
-      <!-- 在這裡貼更多 article.card 區塊 -->
+            </main>
 
-    </main>
+        <footer>
+            <div>
+                <div style="font-weight:600; color:var(--text);">聯絡</div>
+                <div class="small">Email: <a class="contact" href="mailto:youremail@example.com">youremail@example.com</a></div>
+                <div class="small">Instagram: <a class="contact" href="https://instagram.com/yourhandle" target="_blank" rel="noopener">@yourhandle</a></div>
+            </div>
+            <div class="small">© <span id="year"></span> DuciChen — 賽車攝影</div>
+        </footer>
+    </div>
 
-    <footer>
-      <div>
-        <div style="font-weight:600">聯絡</div>
-        <div class="small">Email: <a class="contact" href="mailto:youremail@example.com">youremail@example.com</a></div>
-        <div class="small">Instagram: <a class="contact" href="https://instagram.com/yourhandle" target="_blank" rel="noopener">@yourhandle</a></div>
-      </div>
-      <div class="small">© <span id="year"></span> Your Name — 賽車攝影</div>
-    </footer>
-  </div>
-
-  <script>
-    // 自動年份
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    <script>
+        // 自動年份
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
