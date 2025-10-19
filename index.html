@@ -81,17 +81,13 @@
             box-shadow:0 1px 4px rgba(0,0,0,0.08); 
         }
         
-        /* === 圖片樣式：恢復圖片的自然顯示 === */
-        /* 讓圖片寬度佔滿卡片，高度由圖片自己決定，不限制 */
+        /* 圖片樣式：確保圖片能以自然比例顯示 */
         .photo{
             display:block;
             width:100%;
-            height:auto; /* 讓圖片高度自然伸展，不被 CSS 限制 */
+            height:auto; 
             max-width:100%;
-            transition: opacity 300ms ease; 
         }
-        /* 移除 photo-container 相關的 CSS */
-        /* ==================================== */
 
         .caption{padding:12px; 
             color:var(--muted); 
