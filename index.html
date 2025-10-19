@@ -8,71 +8,57 @@
     body {
       margin: 0;
       font-family: "Poppins", "Noto Sans TC", sans-serif;
-      background-color: #f5f3ef; /* 柔和米白，有質感 */
+      background-color: #f5f3ef; /* 柔和奶油白背景 */
       color: #333;
-      display: flex;
-      height: 100vh;
+      text-align: center;
     }
 
-    /* 左側選單 */
-    .sidebar {
-      width: 220px;
-      background-color: #faf8f6;
-      border-right: 1px solid #ddd;
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
+    header {
       position: fixed;
       top: 0;
       left: 0;
-      height: 100%;
-    }
-
-    .title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 2rem;
-      letter-spacing: 1px;
-      color: #1a1a1a;
-    }
-
-    .menu a {
-      text-decoration: none;
-      color: #555;
-      font-size: 1rem;
-      margin: 0.8rem 0;
-      transition: color 0.3s;
-    }
-
-    .menu a:hover,
-    .menu a.active {
-      color: #000;
+      width: 100%;
+      text-align: left;
+      padding: 1.2rem 2rem;
+      background: transparent;
+      font-size: 1.2rem;
       font-weight: 500;
+      color: #444;
+      letter-spacing: 0.5px;
+      z-index: 10;
     }
 
-    /* 右側圖片牆 */
     .gallery {
-      margin-left: 240px;
-      padding: 2rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      overflow-y: auto;
-      height: 100vh;
-      scroll-behavior: smooth;
+      column-count: 3;
+      column-gap: 1.5rem;
+      padding: 6rem 2rem 2rem;
+    }
+
+    @media (max-width: 1000px) {
+      .gallery {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .gallery {
+        column-count: 1;
+      }
     }
 
     .photo-card {
+      break-inside: avoid;
       background-color: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      overflow: hidden;
+      margin-bottom: 1.5rem;
+      border-radius: 14px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
     }
 
     .photo-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
     }
 
     .photo-card img {
@@ -84,11 +70,17 @@
     .caption {
       padding: 0.8rem 1rem;
       font-size: 0.9rem;
-      color: #444;
+      color: #555;
       text-align: left;
     }
 
-    /* 捲軸樣式 */
+    footer {
+      margin-top: 3rem;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: #888;
+    }
+
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -101,52 +93,33 @@
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <div class="title">Duchi Photography</div>
-    <div class="menu">
-      <a href="#" class="active" onclick="filterCategory('all')">All</a>
-      <a href="#" onclick="filterCategory('f1')">F1</a>
-      <a href="#" onclick="filterCategory('city')">城市街景</a>
-      <a href="#" onclick="filterCategory('nature')">自然</a>
-    </div>
-  </div>
+  <header>Duchi Photography</header>
 
-  <div class="gallery" id="gallery"></div>
+  <section class="gallery" id="gallery"></section>
+
+  <footer>© 2025 Duchi — All rights reserved.</footer>
 
   <script>
     const gallery = document.getElementById("gallery");
-    const categories = ['f1', 'city', 'nature'];
 
-    // 模擬自動偵測檔名（實際 GitHub Pages 無法直接讀資料夾，需手動列出）
+    // 手動列出要展示的照片
     const photos = [
-      { src: 'images/photo_f1_1.jpg', caption: 'Singapore GP Night Action', category: 'f1' },
-      { src: 'images/photo_f1_2.jpg', caption: 'McLaren Pit Stop Moment', category: 'f1' },
-      { src: 'images/photo_city_1.jpg', caption: 'Taipei at dusk', category: 'city' },
-      { src: 'images/photo_city_2.jpg', caption: 'Tokyo alleyway', category: 'city' },
-      { src: 'images/photo_nature_1.jpg', caption: 'Morning light through the trees', category: 'nature' },
+      { src: 'images/photo_f1_1.jpg', caption: 'Singapore GP Night Action' },
+      { src: 'images/photo_f1_2.jpg', caption: 'McLaren Pit Stop Moment' },
+      { src: 'images/photo_city_1.jpg', caption: 'Taipei at dusk' },
+      { src: 'images/photo_city_2.jpg', caption: 'Tokyo alleyway' },
+      { src: 'images/photo_nature_1.jpg', caption: 'Morning light through the trees' },
     ];
 
-    function renderPhotos(category = 'all') {
-      gallery.innerHTML = '';
-      const filtered = category === 'all' ? photos : photos.filter(p => p.category === category);
-      filtered.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'photo-card';
-        card.innerHTML = `
-          <img src="${p.src}" alt="${p.caption}">
-          <div class="caption">${p.caption}</div>
-        `;
-        gallery.appendChild(card);
-      });
-    }
-
-    function filterCategory(category) {
-      document.querySelectorAll('.menu a').forEach(a => a.classList.remove('active'));
-      document.querySelector(`.menu a[onclick*="${category}"]`).classList.add('active');
-      renderPhotos(category);
-    }
-
-    renderPhotos(); // 初始化載入全部
+    photos.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'photo-card';
+      card.innerHTML = `
+        <img src="${p.src}" alt="${p.caption}">
+        <div class="caption">${p.caption}</div>
+      `;
+      gallery.appendChild(card);
+    });
   </script>
 </body>
 </html>
