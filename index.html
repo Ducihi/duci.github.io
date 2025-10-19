@@ -3,62 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Duchi Photography</title>
+  <title>Through My Lense — 攝影作品集</title>
   <style>
     body {
+      font-family: "Inter", "Noto Sans TC", sans-serif;
       margin: 0;
-      font-family: "Poppins", "Noto Sans TC", sans-serif;
-      background-color: #f5f3ef; /* 柔和奶油白背景 */
+      padding: 0;
+      background-color: #f5f3ef; /* ✨ 柔和米白色，有Pinterest感 */
       color: #333;
-      text-align: center;
     }
 
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      text-align: left;
-      padding: 1.2rem 2rem;
       background: transparent;
-      font-size: 1.2rem;
-      font-weight: 500;
-      color: #444;
-      letter-spacing: 0.5px;
+      position: sticky;
+      top: 0;
       z-index: 10;
+      padding: 1.5rem 2rem;
+      text-align: left; /* ✨ 改為靠左 */
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #2a2a2a;
+      letter-spacing: 0.5px;
+    }
+
+    header p {
+      color: #777;
+      margin-top: 6px;
+      font-size: 0.9rem;
+      max-width: 400px;
     }
 
     .gallery {
-      column-count: 3;
-      column-gap: 1.5rem;
-      padding: 6rem 2rem 2rem;
+      column-count: 4;
+      column-gap: 16px;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
     }
 
-    @media (max-width: 1000px) {
-      .gallery {
-        column-count: 2;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .gallery {
-        column-count: 1;
-      }
-    }
+    @media (max-width: 1200px) { .gallery { column-count: 3; } }
+    @media (max-width: 800px) { .gallery { column-count: 2; } }
+    @media (max-width: 500px) { .gallery { column-count: 1; } }
 
     .photo-card {
-      break-inside: avoid;
-      background-color: #fff;
-      margin-bottom: 1.5rem;
+      background: #fff;
       border-radius: 14px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      margin-bottom: 16px;
       overflow: hidden;
+      break-inside: avoid;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .photo-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
     }
 
     .photo-card img {
@@ -68,17 +71,16 @@
     }
 
     .caption {
-      padding: 0.8rem 1rem;
+      padding: 12px;
       font-size: 0.9rem;
       color: #555;
-      text-align: left;
     }
 
     footer {
-      margin-top: 3rem;
-      padding: 2rem;
-      font-size: 0.8rem;
+      padding: 1.5rem;
+      font-size: 0.85rem;
       color: #888;
+      text-align: center;
     }
 
     ::-webkit-scrollbar {
@@ -89,37 +91,45 @@
       background-color: #ccc;
       border-radius: 4px;
     }
-
   </style>
 </head>
 <body>
-  <header>Duci Photography</header>
+  <header>
+    <h1>Through My Lense</h1>
+    <p>賽車攝影｜乾淨的影像與短篇故事 — by DuciChen</p>
+  </header>
 
-  <section class="gallery" id="gallery"></section>
+  <main class="gallery" id="gallery"></main>
 
-  <footer>© 2025 Duci — All rights reserved.</footer>
+  <footer>
+    © <span id="year"></span> DuciChen — Through My Lense
+  </footer>
 
   <script>
+    const totalPhotos = 25; // ← 改成你的照片數量
     const gallery = document.getElementById("gallery");
 
-    // 手動列出要展示的照片
-    const photos = [
-      { src: 'images/photo_f1_1.jpg', caption: 'Singapore GP Night Action' },
-      { src: 'images/photo_f1_2.jpg', caption: 'McLaren Pit Stop Moment' },
-      { src: 'images/photo_city_1.jpg', caption: 'Taipei at dusk' },
-      { src: 'images/photo_city_2.jpg', caption: 'Tokyo alleyway' },
-      { src: 'images/photo_nature_1.jpg', caption: 'Morning light through the trees' },
-    ];
+    for (let i = 1; i <= totalPhotos; i++) {
+      const card = document.createElement("div");
+      card.className = "photo-card";
 
-    photos.forEach(p => {
-      const card = document.createElement('div');
-      card.className = 'photo-card';
-      card.innerHTML = `
-        <img src="${p.src}" alt="${p.caption}">
-        <div class="caption">${p.caption}</div>
-      `;
+      const img = document.createElement("img");
+      img.src = `images/photo${i}.jpg`;
+      img.alt = `作品 photo${i}`;
+      img.loading = "lazy";
+
+      const caption = document.createElement("div");
+      caption.className = "caption";
+      caption.textContent = `作品 #${i}`;
+
+      card.appendChild(img);
+      card.appendChild(caption);
       gallery.appendChild(card);
-    });
+
+      img.onerror = () => card.remove(); // 若圖片不存在就略過
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
