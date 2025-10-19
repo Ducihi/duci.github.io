@@ -3,63 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Duchi Photography Portfolio</title>
+  <title>Through My Lense — 攝影作品集</title>
   <style>
     body {
-      font-family: "Poppins", sans-serif;
+      font-family: "Inter", "Noto Sans TC", sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #111;
-      color: #fff;
+      background-color: #eef0f3;
+      color: #333;
       text-align: center;
     }
 
     header {
-      background-color: #000;
       padding: 2rem;
-      font-size: 2rem;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
       font-weight: 600;
-      letter-spacing: 2px;
+    }
+
+    header p {
+      color: #777;
+      margin-top: 6px;
+      font-size: 0.9rem;
     }
 
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1rem;
+      column-count: 4;
+      column-gap: 16px;
       padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
     }
 
-    .gallery img {
+    @media (max-width: 1200px) { .gallery { column-count: 3; } }
+    @media (max-width: 800px) { .gallery { column-count: 2; } }
+    @media (max-width: 500px) { .gallery { column-count: 1; } }
+
+    .photo-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 16px;
+      overflow: hidden;
+      break-inside: avoid;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    }
+
+    .photo-card img {
       width: 100%;
       height: auto;
-      border-radius: 10px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: block;
     }
 
-    .gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    .caption {
+      padding: 12px;
+      font-size: 0.9rem;
+      color: #666;
     }
 
     footer {
-      padding: 2rem;
-      background-color: #000;
-      color: #888;
-      font-size: 0.9rem;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+      color: #777;
+      border-top: 1px solid #ddd;
+      background: #fff;
     }
   </style>
 </head>
 <body>
-  <header>Duchi Photography Portfolio</header>
+  <header>
+    <h1>Through My Lense</h1>
+    <p>賽車攝影｜乾淨的影像與短篇故事 — by DuciChen</p>
+  </header>
 
-  <section class="gallery">
-    <img src="images/P1010368%20(1).JPG" alt="Photo 1">
-    <!-- 如果還有其他照片，也照這個方式加 -->
-    <!-- <img src="images/photo2.jpg" alt="Photo 2"> -->
-  </section>
+  <main class="gallery" id="gallery"></main>
 
   <footer>
-    © 2025 Duchi — All rights reserved.
+    © <span id="year"></span> DuciChen — Through My Lense
   </footer>
+
+  <script>
+    // ✳️ 在這裡設定有幾張照片
+    const totalPhotos = 25; // ← 改成你的照片數量
+    const gallery = document.getElementById("gallery");
+
+    for (let i = 1; i <= totalPhotos; i++) {
+      const card = document.createElement("div");
+      card.className = "photo-card";
+
+      const img = document.createElement("img");
+      img.src = `images/photo${i}.jpg`;
+      img.alt = `作品 photo${i}`;
+      img.loading = "lazy";
+
+      const caption = document.createElement("div");
+      caption.className = "caption";
+      caption.textContent = `作品 #${i}`;
+
+      card.appendChild(img);
+      card.appendChild(caption);
+      gallery.appendChild(card);
+
+      // 🪄 若圖片不存在就自動略過，不會卡住整頁
+      img.onerror = () => card.remove();
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
